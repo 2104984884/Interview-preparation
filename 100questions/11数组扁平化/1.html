@@ -1,0 +1,28 @@
+<script>
+
+  var midres = []
+  var finres = []
+  function func(arr) {
+    arr.map(item => {
+      if (typeof item === "object") {
+        func(item)
+      } else {
+        midres.push(item)
+      }
+    })
+    midres.map(item => {
+      if (finres.indexOf(item) == -1) {
+        finres.push(item)
+      }
+    })
+    return finres.sort((a, b) => a - b)
+  }
+  var flatArr = arr.toString().split(",");
+  function flatten(arr) {
+    // return arr.flat(Infinity).sort((a, b) => a - b)
+    return Array.from(new Set(arr.flat(Infinity))).sort((a, b) => { return a - b })
+  }
+
+  console.log(func([[2, 3, 4], [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10]))
+  console.log(flatten([[2, 3, 4], [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10]))
+</script>

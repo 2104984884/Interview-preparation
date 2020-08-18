@@ -40,10 +40,10 @@ class MyPromise {
   then(onFulfilled, onRejected) {
     if (typeof onFulfilled !== 'function') {
       // console.log('-------------------')
-      onFulfilled = (value) => this.value
+      onFulfilled = value => value
     }
     if (typeof onRejected !== 'function') {
-      onRejected = function(error) { throw (error) }
+      onRejected = value => value
     }
     // console.log(this)
 
@@ -73,7 +73,15 @@ class MyPromise {
           try {
             // console.log(onFulfilled(this.value))
             let result = onFulfilled(this.value)
-            resolve(result)
+            if (result instanceof MyPromise) {
+              result.then(value => {
+                resolve(value)
+              }, reason => {
+                reject(reason);
+              })
+            } else {
+              resolve(result)
+            }
           } catch (error) {
             reject(error)
           }
@@ -88,7 +96,6 @@ class MyPromise {
             onRejected(error)
           }
         });
-
       }
     })
   }

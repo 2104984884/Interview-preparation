@@ -1,0 +1,22 @@
+<script>
+  const _fetch = window.fetch;
+  window.fetch = function (url, options) {
+    // return new Promise((resolve, reject) => {
+    //   _fetch(url,options)
+    //   .then(res=>{
+    //     console.log()
+    //     resolve(res);
+    //   })
+    //   .catch(reject);
+    // })
+    return _fetch(url, options).then((res) => {
+      console.log(res.url, "请求成功");
+      return res;
+    })
+  }
+
+  fetch('url', {})
+    .then(res => {
+      console.log(res)
+    })
+</script>

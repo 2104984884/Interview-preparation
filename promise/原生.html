@@ -1,37 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>原生</title>
-</head>
-
-<body>
-  <script>
-    let p = new Promise((resolve, reject) => {
-      // resolve('解决')
-      reject('拒绝')
-      // setTimeout(() => {
-      // resolve('解决')
-      // }, 1000);
-    }).then()
-      .then(value => {
-        // throw new Error('出错了')
-        console.log(value);
-        return '后盾人'
-      }, reason => {
-        console.log(reason)
-        return '错误'
-      })
-      .then(
-        value => {
-          console.log('success:' + value);
-        }, reason => [
-          console.log('Error:' + reason)
-        ]
-      )
-  </script>
-</body>
-
-</html>
+<script>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(1)
+    }, 200);
+  })
+    .then((r) => {
+      //7种数据类型
+      //promise
+      //具有then属性的对象 
+      return {
+        then: function(resolve,reject){
+          // console.log(122)
+          resolve(222)
+          // reject('错误')
+          // throw new Error
+        }
+      }
+    })
+    .then(r => {
+      console.log(r)
+    },(err)=>{
+      console.log(err)
+    })
+</script>

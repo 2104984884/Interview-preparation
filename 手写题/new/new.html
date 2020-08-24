@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Animal(name, age) {
+      this.name = name
+      this.age = age
+    }
+    function myNew(Constructor) {
+      const obj = {} //创建一个新对象
+      obj.__proto__ = Constructor.prototype;
+      let res = Constructor.call(obj)//改变this指向新创建的对象
+      return typeof res === 'object' ? res : obj// 构造函数有返回值 返回值是一个对象 则返回这个对象 否则返回创建的对象
+    }
+    // Animal.prototype.name="徐剑豪"
+    // Animal.prototype.age=18
+    const cat = myNew(Animal)
+    console.log(cat)
+  </script>
+</body>
+
+</html>

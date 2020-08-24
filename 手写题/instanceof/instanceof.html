@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var arr = []
+    function instance_of(obj, Constuctor) {
+      let prototype = Constuctor.prototype
+      let proto = obj.__proto__
+      while (true) {
+        if (proto === null) {
+          return false;
+        } else if (proto === prototype) {
+          return true;
+        }
+        proto = proto.__proto__;
+      }
+    }
+    console.log(instance_of(arr, Array));
+    console.log(instance_of(Function, Object))
+    console.log(instance_of(Object, Function))
+    console.log(instance_of(Function, Function))
+  </script>
+</body>
+
+</html>

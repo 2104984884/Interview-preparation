@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" class="search">
+  <script>
+    const search = document.querySelector('.search');
+    search.addEventListener('input', debounce(function (e) {
+      console.log(this);
+      console.log(e.target.value);
+    }, 200))
+    function debounce(fn, wait) {
+      var timer;
+      return function (e) {
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn.call(this,e)
+        }, wait);
+      }
+    }
+  </script>
+</body>
+
+</html>

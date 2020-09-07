@@ -1,9 +1,21 @@
 <script>
-  var a = {};
-  var b = { key: 'b' }; var c = { key: 'c' }
-  a[b] = 'b';
-  a[c] = 'c';
-  console.log(b.toString())
-  // console.log(a,b)
-  console.log(a[b]);
+  // var a = {};
+  // var b = { key: 'b' }; var c = { key: 'c' }
+  // a[b] = 'b';
+  // a[c] = 'c';
+  // console.log(b.toString())
+  // // console.log(a,b)
+  // console.log(a[b]);
+
+
+  function foo(x, y) {
+    console.log(x)
+    var x = 10
+    console.log(x)
+    function x() { }
+    console.log(x)
+  }
+  foo(20, 30)
+
+
 </script>

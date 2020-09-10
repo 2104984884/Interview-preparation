@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var name = 'xiaoming';
+    var obj = {
+      name: '亚索'
+    };
+    function fn(a) {
+      console.log(a + this.name);
+    }
+    Function.prototype.myapply = function (obj, arr) {
+      var obj = obj || window, res;
+      obj.fn = this;
+      if (!arr) {
+        obj.fn();
+        res = obj.fn();
+      } else {
+        var args = []
+        for (var i = 0; i < arr.length; i++) {
+          args.push('arr[' + i + ']');
+          
+        }
+        res = eval('obj.fn(' + args + ')')
+      }
+      delete obj.fn
+      return res;
+    }
+    fn.myapply(obj, ['我的名字是']) 
+  </script>
+</body>
+
+</html>

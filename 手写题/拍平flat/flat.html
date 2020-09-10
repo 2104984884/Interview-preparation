@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body> 
+  <script>
+    var arr1 = [1, [2, 3, [4, [5]]], 6]
+    arr1.push(arr1);
+    let map = new Map()
+    function flat(arr) {
+      var res = []
+      if (map.get(arr)) return map.get(arr)
+      map.set(arr, res);
+      for (let item of arr) {
+        if (Array.isArray(item)) {
+          res.push(...flat(item))
+          // res = res.concat(flat(item))
+        } else {
+          res.push(item)
+        }
+      }
+      return res
+    }
+    console.log(flat(arr1))
+  </script>
+</body>
+
+</html>

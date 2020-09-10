@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var name = 'xiaoming';
+    var obj = {
+      name: '亚索'
+    };
+    function fn(a) {
+      console.log(a + this.name);
+    }
+
+
+    // Function.prototype.mycall = function (obj) {
+    //   var obj = obj || window;
+    //   obj.fn = this;
+    //   var args = [];
+    //   for (var i = 1; i < arguments.length; i++) {
+    //     args.push('arguments[' + i + ']')
+    //   }
+    //   var res = eval('obj.fn(' + args + ')');
+    //   delete obj.fn
+    //   return res
+    // }
+
+
+    Function.prototype.mycall = function (obj) {
+      var obj = obj || window
+      obj.fn = this;
+      var args = []
+      for (var i = 1; i < arguments.length; i++) {
+        args.push("arguments[" + i + "]");
+      }
+      var res = eval("obj.fn(" + args + ")")
+      delete obj.fn
+      return res
+    }
+    fn.mycall(obj, '我的名字是') //fn调用的mycall 就把内部的this指向 传入的第一个参数
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const person = {
+      isHuman: false,
+      printIntroduction: function () {
+        console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+      }
+    };
+    // function _create(proto) {
+    //   function F() {}
+    //   F.prototype = proto
+    //   return new F()
+    // }
+    function object_create(obj) {
+      var args = [].slice.call(arguments, 1)
+      for (let i of args) {
+        Object.assign(obj, i)
+      }
+      function F() { }
+      F.prototype = obj
+      return new F(args)
+    }
+
+
+    function object_create(obj) {
+      var args = Array.from(arguments).slice(1)
+      for(let i of args){
+        Object.assign(obj,i)
+      }
+      function F() { }
+      F.prototype = obj;
+      return new F(args)
+    }
+
+
+
+    const me = object_create(person);
+
+    me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
+    me.isHuman = true; // inherited properties can be overwritten
+
+    me.printIntroduction();
+    // expected output: "My name is Matthew. Am I human? true"
+
+    // function object_create(obj) {
+    //   var args = [].slice.call(arguments, 1)
+    //   for (let i of args) {
+    //     Object.assign(obj, i)
+    //   }
+    //   function F() { }
+    //   F.prototype = obj
+    //   return new F(args)
+    // }
+    // var person = {
+    //   age: 18,
+    //   friend: ['gray', 'amili', 'adward']
+    // }
+    // var instance1 = object_create(person, { sex: "male" })
+    // console.log(instance1.sex) //male
+
+  </script>
+</body>
+
+</html>

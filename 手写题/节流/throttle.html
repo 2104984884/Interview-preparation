@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const throttle = (fn, delay = 500) => {
+    //   let flag = true;
+    //   return (...args) => {
+    //     if (!flag) return;
+    //     flag = false;
+    //     setTimeout(() => {
+    //       fn.apply(this, args);
+    //       flag = true;
+    //     }, delay);
+    //   };
+    // };
+
+
+
+
+    var throttle = function (func, delay) {
+      var timer = null;
+      var startTime = Date.now();
+      return function () {
+        var curTime = Date.now();
+        var remaining = delay - (curTime - startTime);//延迟事件-过去多少事件=剩余时间
+        var context = this;
+        var args = arguments;
+        clearTimeout(timer);
+        if (remaining <= 0) {
+          func.apply(context, args);
+          startTime = Date.now();
+        } else {
+          timer = setTimeout(func, remaining);
+        }
+      }
+    }
+    function handle() {
+      console.log(Math.random());
+    }
+    window.addEventListener('scroll', throttle(handle, 1000));
+  </script>
+</body>
+
+</html>

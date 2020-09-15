@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="a"></div>
+  <div id="b"></div>
+  <div id="c"></div>
+  <script>
+    const DomA = document.querySelector('#a');
+    const DomB = document.querySelector('#b');
+    const DomC = document.querySelector('#c');
+    function timer() {
+      DomA.style.width = DomA.offsetWidth + 1 + 'px'
+      DomB.style.width = DomA.offsetWidth + 1 + 'px'//第一次offsetWidth
+      DomC.style.width = DomA.offsetWidth + 1 + 'px'//第二次offsetWidth
+      //第三次 width=
+    }
+    // width的更改最后会被合并成一次  
+    setTimeout(() => {
+      timer()
+    }, 2000);
+    //并不是offsetWidth就会发生重排  前面没有对dom进行样式变更
+  </script>
+</body>
+
+</html>

@@ -3,6 +3,20 @@
     this.name = name;
     this.color = color;
   }
+  Function.prototype.mybind = function (obj, ...args1) {
+    let fn = this;
+    function test(...args2) {
+      let args = args1.concat(args2)
+      //谁bind 调用谁？？
+      //如果被new  this应该指向实例 new >call/apply/bind>obj.xxx 优先级
+      //怎么判断一个函数被new 
+      // let isNewCall = this instanceof test//指向new 返回的实例
+      let isNewCall = new.target === test;
+      return fn.apply(isNewCall ? this : obj, args);
+    }
+    test.prototype = Object.create(this.prototype);
+    return test;
+  }
   Animal.prototype.say = function () {
     return `I'm a ${this.color} ${this.name}`;
   };
@@ -11,4 +25,5 @@
   if (cat.say() === 'I\'m a white cat' && cat instanceof Cat && cat instanceof Animal) {
     console.log('success');
   }
+  console.log
 </script>

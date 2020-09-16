@@ -1,0 +1,14 @@
+<script>
+  function Animal(name, color) {
+    this.name = name;
+    this.color = color;
+  }
+  Animal.prototype.say = function () {
+    return `I'm a ${this.color} ${this.name}`;
+  };
+  const Cat = Animal.mybind(null, 'cat');
+  const cat = new Cat('white');//修改this指向， new >call/apply/bind>obj.xxx 优先级
+  if (cat.say() === 'I\'m a white cat' && cat instanceof Cat && cat instanceof Animal) {
+    console.log('success');
+  }
+</script>

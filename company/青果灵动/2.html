@@ -1,0 +1,28 @@
+<body>
+  <input type="file">
+</body>
+<script>
+  //最高的玻璃球应该是1 直接从1楼开始抛玻璃球  代码实现的是最快用最少玻璃球找到恰好会碎掉的楼层
+  //low high 分别表示楼层下限和上限，target为目标楼层，count是计数器 计算使用玻璃球数量
+  //每次对最高楼层进行二分 让中位数与目标楼层比较，大于则用mid 替换上限
+  //小于则用mid 替换下限 递归调用
+  function func(low, high, target, count) {
+    var mid = parseInt((high + low) / 2);
+    if (mid == target) {
+      console.log(count)
+    } else if (mid > target) {
+      high = mid
+      count++;
+      console.log(low, mid, target, count)
+      func(low, high, target, count)
+    } else {
+      low = mid
+      count++;
+      console.log(mid, high, target, count)
+      func(low, high, target, count)
+    }
+  }
+  func(1, 100, 37, 1)
+
+
+</script>

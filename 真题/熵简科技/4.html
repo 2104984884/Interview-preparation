@@ -1,0 +1,30 @@
+<script>
+  //  4、实现一个findStr函数，接受一个字符串数组，返回最长的重复字符串
+  //   findStr(['aecb', 'dcbc', 'fcbg'])
+  function findStr(arr) {
+    var arr1 = arr;
+    function help(arr) {
+      var max = arr[0].length > arr[1].length ? arr[0] : arr[1];
+      var min = (max == arr[0] ? arr[1] : arr[0])
+      for (var i = 0; i < min.length; i++) {
+        for (var j = 0, k = min.length; j < min.length; j++) {
+          var newStr = min.substring(j, k);
+          if (max.includes(newStr)) {//说明找到了
+            return newStr;
+          }
+        }
+      }
+    }
+    if (arr.length >= 2) {
+      arr = arr.slice(2, arr.length)
+      var res = help(arr1)
+      arr.unshift(res);
+      console.log(arr)
+      findStr(arr)
+      return res
+    } else {
+      return
+    }
+  }
+  console.log(findStr(['aecb', 'dcbc', 'fcbg']))
+</script>

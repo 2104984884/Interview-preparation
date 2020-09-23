@@ -1,0 +1,20 @@
+<script>
+  // 实现一个replace函数，接收两个字符串，将第二个字符串中所有和第一个字符串相同的字符串套上span标签
+  // replace('a', 'abcadefga'); 
+  // 返回值为 '<span>a</span>bc<span>a</span>defg<span>a</span>'
+
+  function replace(str1, str2) {
+    var str2 = str2.split('')
+    str2 = str2.map(item => {
+      return item === str1 ? '<span>' + item + '</span>' : item
+    })
+    var res = str2.join('')
+    console.log(res)
+    return res
+  }
+  replace('a', 'abcadefga');
+
+
+
+
+</script>

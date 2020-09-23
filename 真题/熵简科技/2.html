@@ -1,0 +1,90 @@
+<script>
+  var a = [
+    {
+      id: "a",
+      value: 1,
+      children: [
+        {
+          id: "b",
+          value: 2,
+          children: [
+            {
+              id: "c",
+              value: 3,
+            },
+            {
+              id: "d",
+              value: 4,
+            },
+            {
+              id: "e",
+              value: 5,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "f",
+      value: 3,
+    },
+    {
+      id: "g",
+      value: 4,
+      children: [
+        {
+          id: "h",
+          value: 5,
+        }
+      ]
+    }
+  ]
+  console.log(a)
+  //     1）实现一个find函数，接收一个参数value，返回所有满足该值的id数组
+  // find(3); // 返回数组[c,f]
+  // （2）实现一个group函数，将所有id根据value进行分组返回
+  // group(); // 返回数组 [[a],[b],[c,f],[d,g],[e,h]]
+
+
+  function find(value) {
+    var res = [];
+    function help(arr) {
+      arr.map((item) => {
+        if (!item.children && item.value != 3) {
+          return
+        } else if (item.value === 3) {
+          res.push(item.id)
+        } else if (item.children) {
+          help(item.children)
+        }
+      })
+    }
+    help(a);
+    console.log(res)
+  }
+  find(3)
+  // （2）实现一个group函数，将所有id根据value进行分组返回
+  // group(); // 返回数组 [[a],[b],[c,f],[d,g],[e,h]]..
+  Array.prototype.group = function () {
+    var context = this
+    var res = {}, finRes = []
+    function help(arr) {
+      arr.map(item => {
+        if (res[item.value] === undefined) {
+          res[item.value] = Array.of(item.id)
+        } else if (res[item.value]) {
+          res[item.value].push(item.id)
+        }
+        if (item.children) {
+          help(item.children)
+        }
+    })
+    return res
+  }
+  res = help(context);
+  finRes = Object.values(res)
+  console.log(finRes)
+  return finRes
+  }
+  a.group();
+</script>

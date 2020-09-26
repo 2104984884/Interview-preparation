@@ -6,9 +6,20 @@
     let fn = this;
     return function (...args2) {
       let args = arg1.concat(arg2)
-      return fn.apply(obj,args);
+      return fn.apply(obj, args);
     }
   }
   let sum10 = sum.bind(null, 10);
   sum10(20, 30);
+</script>
+
+
+<script>
+  function mybind(obj, ...arg1) {
+    let fn = this;
+    return function (...arg2) {
+      let args = arg1.concat(arg2)
+      return fn.apply(this, args)
+    }
+  }
 </script>
